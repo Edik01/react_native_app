@@ -1,20 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, Button } from "react-native";
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const io = require('socket.io')(server);
 
-const App = () => {
-  const [counter, setCounter] = useState(0);
+server.listen(process.env.PORT || 3000, function () {
+  console.log('Server running in port 3000');
+});
 
-  const incrementCounter = () => {
-    setCounter(counter + 1);
-  };
-
-  return (
-    <View>
-      <Text>Пример React Native приложения</Text>
-      <Text>Счетчик: {counter}</Text>
-      <Button title="Увеличить счетчик" onPress={incrementCounter} />
-    </View>
-  );
-};
-
-export default App;
+app.use(express.static(__dirname + '/public'));

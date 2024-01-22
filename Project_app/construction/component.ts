@@ -1,9 +1,21 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+import React, { useState } from "react";
+import { View, Text, Button } from "react-native";
 
-const app = createApp(App);
+const App = () => {
+  const [counter, setCounter] = useState(0);
 
-app.use(router);
+  const incrementCounter = () => {
+    setCounter(counter + 1);
+  };
 
-app.mount("#app");
+  return (
+    <View>
+      <Text>Пример React Native приложения</Text>
+      <Text>Счетчик: {counter}</Text>
+      <Button title="Увеличить счетчик" onPress={incrementCounter} />
+    </View>
+  );
+};
+
+export default App;
+
